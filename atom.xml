@@ -4,7 +4,7 @@
   <subtitle><![CDATA[文字、代码]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://www.objectlife.com/"/>
-  <updated>2015-07-10T06:40:26.000Z</updated>
+  <updated>2015-07-10T07:22:24.000Z</updated>
   <id>http://www.objectlife.com/</id>
   
   <author>
@@ -18,8 +18,8 @@
     <title><![CDATA[拖拽RecyclerView]]></title>
     <link href="http://www.objectlife.com/2015/07/10/%E6%8B%96%E6%8B%BDRecyclerView/"/>
     <id>http://www.objectlife.com/2015/07/10/拖拽RecyclerView/</id>
-    <published>2015-07-10T06:40:26.000Z</published>
-    <updated>2015-07-10T06:40:26.000Z</updated>
+    <published>2015-07-10T07:22:24.000Z</published>
+    <updated>2015-07-10T07:22:24.000Z</updated>
     <content type="html"><![CDATA[<ul>
 <li><p>原文链接 : <a href="https://medium.com/@ipaulpro/drag-and-swipe-with-recyclerview-b9456d2b1aaf" target="_blank" rel="external">Drag and Swipe with RecyclerView</a></p>
 </li>
@@ -37,6 +37,7 @@
 
 
 <p>现在有很多使用RecyclerView实现“<strong>拖拽(drag &amp; drop)</strong>”和“<strong>滑动消失(swipe-to-dismiss)</strong>”效果的教程、库、和示例代码。虽然现在有更新的、更好的方式可以实现但是大部分的代码仍旧使用了旧的API<em><a href="http://developer.android.com/guide/topics/ui/drag-drop.html" target="_blank" rel="external">View.OnDragListener</a></em>或者使用Roman Nurik’s <em><a href="https://github.com/romannurik/Android-SwipeToDismiss" target="_blank" rel="external">SwipeToDismiss</a></em>这个库中的处理方式。有一部分使用了新的API，但主要是依赖GestureDetectors 和 onInterceptTouchEvent或者实现的方式很复杂。实际上有非常简单的方式就可以把新特性添加到RecyclerView中。只需要一个类，并且它已经包含在Android Support Library之中。</p>
+<!--Read More-->
 <h3 id="ItemTouchHelper"><a href="https://developer.android.com/reference/android/support/v7/widget/helper/ItemTouchHelper.html" target="_blank" rel="external">ItemTouchHelper</a></h3><p>ItemTouchHelper是一个非常强大的工具类用于处理当你添加drag&amp;drop 和 swipe-to-dismiss特性到RecyclerView时所关心的那些问题。它是<a href="https://developer.android.com/reference/android/support/v7/widget/RecyclerView.ItemDecoration.html" target="_blank" rel="external">RecyclerView.ItemDecoration</a>的子类,意味着可以向已经存在的LayoutManager 和 Adapter(!)中添加任何东西，并且也可以处理已经存在的item animations、type-restricted、drop settling animations甚至更多。<br>在这篇文章我将示范一下ItemTouchHelper的简单实现，稍后，在这一系列的文章中我们将延伸扩展更多特性。</p>
 <h2 id="忽略开头">忽略开头</h2><p>只对代码感兴趣？ Github源码: <em><a href="https://github.com/iPaulPro/Android-ItemTouchHelper-Demo" target="_blank" rel="external">Android-ItemTouchHelper-Demo</a></em>,<br>Apk下载:<em><a href="https://github.com/iPaulPro/Android-ItemTouchHelper-Demo/releases" target="_blank" rel="external">from here</a></em>.</p>
 <h2 id="配置">配置</h2><p>首先我们需要对RecyclerView进行配置，如果没有准备好，请先更新你的build.gradle，添加RecyclerView依赖。</p>
@@ -96,8 +97,8 @@
     <title><![CDATA[还在用Toast？你Out啦，试试Snackbar吧！]]></title>
     <link href="http://www.objectlife.com/2015/07/10/%E8%BF%98%E5%9C%A8%E7%94%A8Toast%EF%BC%9F%E4%BD%A0Out%E5%95%A6%EF%BC%8C%E8%AF%95%E8%AF%95Snackbar%E5%90%A7%EF%BC%81/"/>
     <id>http://www.objectlife.com/2015/07/10/还在用Toast？你Out啦，试试Snackbar吧！/</id>
-    <published>2015-07-10T06:40:07.000Z</published>
-    <updated>2015-07-10T06:40:07.000Z</updated>
+    <published>2015-07-10T07:22:06.000Z</published>
+    <updated>2015-07-10T07:22:06.000Z</updated>
     <content type="html"><![CDATA[<ul>
 <li><p>原文链接 : <a href="http://www.technotalkative.com/part-2-welcome-snackbar-goodbye-toast/" target="_blank" rel="external">Welcome Snackbar, Goodbye Toast!</a></p>
 </li>
@@ -125,6 +126,7 @@
 <li>同一时间只能显示一个snackbar。</li>
 </ul>
 <p>Snackbar基本上继承了和Toast一样的方法和属性，例如LENGTH_LONG 和 LENGTH_SHORT用于设置显示时长。</p>
+<!--Read More-->
 <h2 id="如何使用">如何使用</h2><p>我们看一下如何使用:</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">Snackbar.make(view, message, duration)</span><br><span class="line">       .setAction(action message, click listener)</span><br><span class="line">       .show();</span><br></pre></td></tr></table></figure>
 <h3 id="方法:">方法:</h3><ul>
