@@ -86,14 +86,14 @@ var _hmt = _hmt || [];
       <div class="outer">
         <section id="main">
   
-    <article id="post-new-hEOO" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-拖拽RecyclerView" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2015/07/10/new-hEOO/" class="article-date">
-  <time datetime="2015-07-10T05:28:54.000Z" itemprop="datePublished">2015-07-10</time>
+    <a href="/2015/07/10/拖拽RecyclerView/" class="article-date">
+  <time datetime="2015-07-10T06:29:16.000Z" itemprop="datePublished">2015-07-10</time>
 </a>
     
   <div class="article-category">
-    <a class="article-category-link" href="/categories/测试/">测试</a>
+    <a class="article-category-link" href="/categories/翻译/">翻译</a>
   </div>
 
   </div>
@@ -104,39 +104,7 @@ var _hmt = _hmt || [];
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2015/07/10/new-hEOO/">new hEOO</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>哈哈</p>
-
-      
-    </div>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-HelloWorld" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2015/03/21/HelloWorld/" class="article-date">
-  <time datetime="2015-03-21T05:30:52.000Z" itemprop="datePublished">2015-03-21</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2015/03/21/HelloWorld/">HelloWorld</a>
+      <a class="article-title" href="/2015/07/10/拖拽RecyclerView/">拖拽RecyclerView</a>
     </h1>
   
 
@@ -146,12 +114,180 @@ var _hmt = _hmt || [];
       
         <blockquote>
 <ul>
-<li>整理知识，学习笔记</li>
-<li>发布日记，杂文，所见所想
+<li>原文链接 : <a href="https://medium.com/@ipaulpro/drag-and-swipe-with-recyclerview-b9456d2b1aaf" target="_blank" rel="external">Drag and Swipe with RecyclerView</a></li>
+<li>原文作者 : <a href="https://medium.com/@ipaulpro" target="_blank" rel="external">Paul Burke</a></li>
+<li><a href="http://www.devtf.cn" target="_blank" rel="external">译文出自 :  开发技术前线 www.devtf.cn</a></li>
+<li>译者 : <a href="https://github.com/objectlife" target="_blank" rel="external">objectlife</a> </li>
+<li>校对者: <a href="https://github.com/bboyfeiyu" target="_blank" rel="external">Mr.Simple</a> </li>
+<li>状态 : 完成</li>
+</ul>
+</blockquote>
+<video loop video="" autoplay class="graf-image" data-image-id="1*4Cqfs-75ibhvC_3BMEIvVA.gif" data-width="1440" data-height="600"><source src="https://d262ilb51hltx0.cloudfront.net/max/2000/1*4Cqfs-75ibhvC_3BMEIvVA.mp4" type="video/mp4"></video>
+
+
+
+<p>现在有很多使用RecyclerView实现“<strong>拖拽(drag &amp; drop)</strong>”和“<strong>滑动消失(swipe-to-dismiss)</strong>”效果的教程、库、和示例代码。虽然现在有更新的、更好的方式可以实现但是大部分的代码仍旧使用了旧的API<em><a href="http://developer.android.com/guide/topics/ui/drag-drop.html" target="_blank" rel="external">View.OnDragListener</a></em>或者使用Roman Nurik’s <em><a href="https://github.com/romannurik/Android-SwipeToDismiss" target="_blank" rel="external">SwipeToDismiss</a></em>这个库中的处理方式。有一部分使用了新的API，但主要是依赖GestureDetectors 和 onInterceptTouchEvent或者实现的方式很复杂。实际上有非常简单的方式就可以把新特性添加到RecyclerView中。只需要一个类，并且它已经包含在Android Support Library之中。</p>
+<h3 id="ItemTouchHelper"><a href="https://developer.android.com/reference/android/support/v7/widget/helper/ItemTouchHelper.html" target="_blank" rel="external">ItemTouchHelper</a></h3><p>ItemTouchHelper是一个非常强大的工具类用于处理当你添加drag&amp;drop 和 swipe-to-dismiss特性到RecyclerView时所关心的那些问题。它是<a href="https://developer.android.com/reference/android/support/v7/widget/RecyclerView.ItemDecoration.html" target="_blank" rel="external">RecyclerView.ItemDecoration</a>的子类,意味着可以向已经存在的LayoutManager 和 Adapter(!)中添加任何东西，并且也可以处理已经存在的item animations、type-restricted、drop settling animations甚至更多。<br>在这篇文章我将示范一下ItemTouchHelper的简单实现，稍后，在这一系列的文章中我们将延伸扩展更多特性。</p>
+<h2 id="忽略开头">忽略开头</h2><p>只对代码感兴趣？ Github源码: <em><a href="https://github.com/iPaulPro/Android-ItemTouchHelper-Demo" target="_blank" rel="external">Android-ItemTouchHelper-Demo</a></em>,<br>Apk下载:<em><a href="https://github.com/iPaulPro/Android-ItemTouchHelper-Demo/releases" target="_blank" rel="external">from here</a></em>.</p>
+<h2 id="配置">配置</h2><p>首先我们需要对RecyclerView进行配置，如果没有准备好，请先更新你的build.gradle，添加RecyclerView依赖。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">compile <span class="string">'com.android.support:recyclerview-v7:22.2.0'</span></span><br></pre></td></tr></table></figure>
+<p>在任意RecyclerView.Adapter 和 LayoutManager都可以使用ItemTouchHelper，这篇文章代码的基本文件在这：</p>
+<p><a href="https://gist.github.com/iPaulPro/2216ea5e14818056cfcc" target="_blank" rel="external">https://gist.github.com/iPaulPro/2216ea5e14818056cfcc</a></p>
+<h2 id="使用ItemTouchHelper_和_ItemTouchHelper-Callback">使用ItemTouchHelper 和 ItemTouchHelper.Callback</h2><p>为了使用ItemTouchHelper，你必须得先创建<em><a href="https://developer.android.com/reference/android/support/v7/widget/helper/ItemTouchHelper.Callback.html" target="_blank" rel="external">ItemTouchHelper.Callback</a></em>。这是一个接口用于监听“move” 和 “swipe”的状态。也可用于你要控制所选的view的状态和重写默认动画。如果你只是想使用基本实现你可以使用系统提供的一个帮助类<em><a href="https://developer.android.com/reference/android/support/v7/widget/helper/ItemTouchHelper.SimpleCallback.html" target="_blank" rel="external">SimpleCallback</a></em>，但是本着学习的目的，我们还是自己来实现。</p>
+<p>实现基本的drag &amp; drop 和 swipe-to-dismiss必须实现以下主要的回调函数:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">getMovementFlags(RecyclerView, ViewHolder)</span><br><span class="line">onMove(RecyclerView, ViewHolder, ViewHolder)</span><br><span class="line">onSwiped(ViewHolder, <span class="keyword">int</span>)</span><br></pre></td></tr></table></figure>
+<p>使用两个帮助函数:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">isLongPressDragEnabled()</span><br><span class="line">isItemViewSwipeEnabled()</span><br></pre></td></tr></table></figure>
+<p>我们将逐个进行介绍.</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="annotation">@Override</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getMovementFlags</span><span class="params">(RecyclerView recyclerView, </span><br><span class="line">        RecyclerView.ViewHolder viewHolder)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> dragFlags = ItemTouchHelper.UP | ItemTouchHelper.DOWN;</span><br><span class="line">    <span class="keyword">int</span> swipeFlags = ItemTouchHelper.START | ItemTouchHelper.END;</span><br><span class="line">    <span class="keyword">return</span> makeMovementFlags(dragFlags, swipeFlags);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>ItemTouchHelper允许非常简单的判断屏幕事件的走向。必须重写<strong>getMovementFlags()</strong>来说明支持哪个方向的拖拽和滑动。使用帮助类<strong>ItemTouchHelper.makeMovementFlags(int, int)</strong>来管理returned标志。这样就可以在同一个方向进行拖拽和滑动了。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="annotation">@Override</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isLongPressDragEnabled</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>ItemTouchHelper可以只支持drag而不支持swipe(or vice versa)，所以你必须明确指出你希望支持的类型。为了支持长按 RecyclerView item 对其进行拖动，<strong>isLongPressDragEnabled()</strong>函数实现应该返回true. 此外在开始拖拽时<strong>ItemTouchHelper.startDrag(RecyclerView.ViewHolder)</strong>将会被调用。这个我们稍后再讨论。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="annotation">@Override</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isItemViewSwipeEnabled</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>如果在viwe中可以随意滑动，<strong>isItemViewSwipeEnabled()</strong>函数返回true. 此外手动拖动时<strong>ItemTouchHelper.startSwipe(RecyclerView.ViewHolder)</strong>会被调用。</p>
+<p><strong>onMove()</strong> 和 <strong>onSwiped()</strong>负责主要数据的更新。故首先我们需要创建一个允许传递事件回调的接口。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">ItemTouchHelperAdapter</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">onItemMove</span><span class="params">(<span class="keyword">int</span> fromPosition, <span class="keyword">int</span> toPosition)</span></span>;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">onItemDismiss</span><span class="params">(<span class="keyword">int</span> position)</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><em><a href="https://gist.github.com/iPaulPro/5d43325ac7ae579760a9" target="_blank" rel="external">ItemTouchHelperAdapter.java Gist</a></em></p>
+<p>最简单的方式就是下面这样，让我们的RecyclerListAdapter实现ItemTouchHelperAdapter。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">RecyclerListAdapter</span> <span class="keyword">extends</span> </span><br><span class="line">        <span class="title">RecyclerView</span>.<span class="title">Adapter</span>&lt;<span class="title">ItemViewHolder</span>&gt; </span><br><span class="line">        <span class="keyword">implements</span> <span class="title">ItemTouchHelperAdapter</span> </span>&#123;</span><br><span class="line"><span class="comment">// ... code from [gist]()</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="annotation">@Override</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onItemDismiss</span><span class="params">(<span class="keyword">int</span> position)</span> </span>&#123;</span><br><span class="line">    mItems.remove(position);</span><br><span class="line">    notifyItemRemoved(position);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="annotation">@Override</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onItemMove</span><span class="params">(<span class="keyword">int</span> from, <span class="keyword">int</span> to)</span> </span>&#123;</span><br><span class="line">    Collections.swap(mItems, from, to);</span><br><span class="line">    notifyItemMoved(from, to);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>notifyItemRemoved()</strong> 和 <strong>notifyItemMoved()</strong>的调用是非常重要，因此Adapter是可以感受到这些变化的,同样重要的是要注意当我们改变item的Position的时候view的index也时刻在改变，<strong>并不是在“drop”事件结束后再改变</strong>。</p>
+<p>现在我们回过头来创建我们自己的<strong>SimpleItemTouchHelperCallback</strong>并且必须override onMove() 和 onSwiped()。首先添加一个构造函数和Adapter变量。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">final</span> ItemTouchHelperAdapter mAdapter;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="title">SimpleItemTouchHelperCallback</span><span class="params">(</span><br><span class="line">        ItemTouchHelperAdapter adapter)</span> </span>&#123;</span><br><span class="line">    mAdapter = adapter;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>之后 override the remaining events and notify the adapter:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="annotation">@Override</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">onMove</span><span class="params">(RecyclerView recyclerView, </span><br><span class="line">        RecyclerView.ViewHolder viewHolder, </span><br><span class="line">        RecyclerView.ViewHolder target)</span> </span>&#123;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">mAdapter.onItemMove(viewHolder.getAdapterPosition(), </span><br><span class="line">            target.getAdapterPosition());</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="annotation">@Override</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onSwiped</span><span class="params">(RecyclerView.ViewHolder viewHolder, </span><br><span class="line">        <span class="keyword">int</span> direction)</span> </span>&#123;</span><br><span class="line">    mAdapter.onItemDismiss(viewHolder.getAdapterPosition());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>写完之后回调类应该像下面这样：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SimpleItemTouchHelperCallback</span> <span class="keyword">extends</span> <span class="title">ItemTouchHelper</span>.<span class="title">Callback</span> </span>&#123;</span><br><span class="line"> </span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> ItemTouchHelperAdapter mAdapter;</span><br><span class="line"> </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">SimpleItemTouchHelperCallback</span><span class="params">(ItemTouchHelperAdapter adapter)</span> </span>&#123;</span><br><span class="line">        mAdapter = adapter;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="annotation">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isLongPressDragEnabled</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line">    <span class="annotation">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isItemViewSwipeEnabled</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line">    <span class="annotation">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getMovementFlags</span><span class="params">(RecyclerView recyclerView, ViewHolder viewHolder)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> dragFlags = ItemTouchHelper.UP | ItemTouchHelper.DOWN;</span><br><span class="line">        <span class="keyword">int</span> swipeFlags = ItemTouchHelper.START | ItemTouchHelper.END;</span><br><span class="line">        <span class="keyword">return</span> makeMovementFlags(dragFlags, swipeFlags);</span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line">    <span class="annotation">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">onMove</span><span class="params">(RecyclerView recyclerView, ViewHolder viewHolder, </span><br><span class="line">            ViewHolder target)</span> </span>&#123;</span><br><span class="line">        mAdapter.onItemMove(viewHolder.getAdapterPosition(), target.getAdapterPosition());</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line">    <span class="annotation">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onSwiped</span><span class="params">(ViewHolder viewHolder, <span class="keyword">int</span> direction)</span> </span>&#123;</span><br><span class="line">        mAdapter.onItemDismiss(viewHolder.getAdapterPosition());</span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>随着我们Callback的完成，再创建ItemTouchHelper并且调用<strong>attachToRecyclerView(RecyclerView)</strong> (e.g. in <a href="https://gist.github.com/iPaulPro/2216ea5e14818056cfcc#file-mainfragment-java" target="_blank" rel="external">MainFragment.java</a>):</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">ItemTouchHelper.Callback callback = </span><br><span class="line">    <span class="keyword">new</span> SimpleItemTouchHelperCallback(adapter);</span><br><span class="line">ItemTouchHelper touchHelper = <span class="keyword">new</span> ItemTouchHelper(callback);</span><br><span class="line">touchHelper.attachToRecyclerView(recyclerView);</span><br></pre></td></tr></table></figure>
+<p>程序运行结果：</p>
+<video loop video="" autoplay class="graf-image" data-image-id="1*FdJbZnF5I-iOw0wgiuVJGQ.gif" data-width="360" data-height="508"><br><source src="https://d262ilb51hltx0.cloudfront.net/max/1600/1*FdJbZnF5I-iOw0wgiuVJGQ.mp4" type="video/mp4">Your browser does not support the video tag.</video>
+
+
+<h2 id="结束语">结束语</h2><p>这是一种极其简单的对ItemTouchHelper的实现写法。但是应该清楚的知道，使用RecyclerView实现基本的拖拽和滑动消失效果是不需要引入三方library的。在下一篇中我们将对拖拽进行更加丰富的控制实现。</p>
+<h2 id="源代码">源代码</h2><p><a href="https://github.com/iPaulPro/Android-ItemTouchHelper-Demo" target="_blank" rel="external">Android-ItemTouchHelper-Demo</a>.</p>
+<p>关注我: <a href="http://google.com/+PaulBurke" target="_blank" rel="external">Google+</a> and <a href="https://twitter.com/ipaulpro" target="_blank" rel="external">Twitter</a></p>
+<p>© 2015 Paul Burke</p>
+
+      
+    </div>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-还在用Toast？你Out啦，试试Snackbar吧！" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/07/10/还在用Toast？你Out啦，试试Snackbar吧！/" class="article-date">
+  <time datetime="2015-07-10T06:28:46.000Z" itemprop="datePublished">2015-07-10</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/翻译/">翻译</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
         
-          <p class="article-more-link">
-            <a href="/2015/03/21/HelloWorld/#more">Read More</a>
-          </p>
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/07/10/还在用Toast？你Out啦，试试Snackbar吧！/">还在用Toast？你Out啦，试试Snackbar吧！</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<ul>
+<li>原文链接 : <a href="http://www.technotalkative.com/part-2-welcome-snackbar-goodbye-toast/" target="_blank" rel="external">Welcome Snackbar, Goodbye Toast!</a></li>
+<li>原文作者 : <a href="http://en.gravatar.com/pareshnmayani" target="_blank" rel="external">Paresh Mayani</a></li>
+<li><a href="http://www.devtf.cn" target="_blank" rel="external">译文出自 :  开发技术前线 www.devtf.cn</a></li>
+<li>译者 : <a href="https://github.com/objectlife" target="_blank" rel="external">objectlife</a> </li>
+<li>校对者: <a href="https://github.com/bboyfeiyu" target="_blank" rel="external">Mr.Simple</a> </li>
+<li>状态 : 完成</li>
+</ul>
+</blockquote>
+<p>欢迎来到Android design support library系列教程第二部分，第一部分我们讨论了<a href="http://www.technotalkative.com/part-1-floating-action-button/" target="_blank" rel="external">Floating action button</a>的一些attributes 和 常见issues。</p>
+<p>今天我们讨论一下另一个组件”Snackbar”.</p>
+<p>Welcome Snackbar, Goodbye Toast!</p>
+<blockquote>
+<p>“Providing lightweight, quick feedback about an operation is a perfect opportunity to use a snackbar.”</p>
+</blockquote>
+<p>Snackbar是design support library中另一个组件，使用Snackbar我们可以在屏幕底部(大多时候)快速弹出消息，它和Toast非常相似，但是它更灵活一些。</p>
+<ul>
+<li>当它显示一段时间后或用户与屏幕交互时它会自动消失。</li>
+<li>可以自定义action-可选操作。</li>
+<li>swiping it off the screen可以让FAB消失</li>
+<li>它是context sensitive message(自己理解吧),所以这些消息是UI screen的一部分并且它是显示在所有屏幕其它元素之上(屏幕最顶层)，并不是像Toast一样覆盖在屏幕上。</li>
+<li>同一时间只能显示一个snackbar。</li>
+</ul>
+<p>Snackbar基本上继承了和Toast一样的方法和属性，例如LENGTH_LONG 和 LENGTH_SHORT用于设置显示时长。</p>
+<h2 id="如何使用">如何使用</h2><p>我们看一下如何使用:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">Snackbar.make(view, message, duration)</span><br><span class="line">       .setAction(action message, click listener)</span><br><span class="line">       .show();</span><br></pre></td></tr></table></figure>
+<h3 id="方法:">方法:</h3><ul>
+<li><em><font color="red">make()</font></em>  – 生成Snackbar消息</li>
+<li><em><font color="red">setAction()</font></em>  – 设置action</li>
+<li><em><font color="red">make()</font></em>  – 显示Snackbar消息</li>
+</ul>
+<h3 id="属性:">属性:</h3><ul>
+<li>make()方法的第一个参数是一个view, snackbar会试着寻找一个父view来hold这个view. Snackbar将遍历整个view tree 来寻找一个合适的父view，它可能是一个coordinatorLayout也可能是window decor’s content view,随便哪一个都行。</li>
+<li>正如上面所提到，duration参数和Toast中的duration参数类似，只能是LENGTH_SHORT 或 LENGTH_LONG，不能是其它任何随机数。</li>
+</ul>
+<h3 id="示例:">示例:</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">Snackbar.make(rootlayout, <span class="string">"Hello SnackBar!"</span>, Snackbar.LENGTH_SHORT)</span><br><span class="line">       .setAction(<span class="string">"Undo"</span>, <span class="keyword">new</span> View.OnClickListener() &#123;</span><br><span class="line">           <span class="annotation">@Override</span></span><br><span class="line">           <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onClick</span><span class="params">(View v)</span> </span>&#123;</span><br><span class="line">               <span class="comment">// Perform anything for the action selected</span></span><br><span class="line">           &#125;</span><br><span class="line">       &#125;)</span><br><span class="line">       .show();</span><br></pre></td></tr></table></figure>
+<p>部局文件中rootlayout是framelayout并且添加了FAB(Floating action button)，看一下FAB示例：</p>
+<p>点击FAB查看结果：</p>
+<p><img src="http://www.technotalkative.com/wp-content/uploads/2015/06/Snackbar-framelayout1.gif" alt=""></p>
+<p>程序没问题，但是对于用户体验来说并不太好，它应该向上移一些，如下图所示：</p>
+<blockquote>
+<p>Having a CoordinatorLayout in your view hierarchy allows Snackbar to enable certain features, such as swipe-to-dismiss and automatically moving of widgets like FloatingActionButton.</p>
+</blockquote>
+<p>我们在该系列文章的下一部分讨论CoordinatorLayout。</p>
+<p><img src="http://www.technotalkative.com/wp-content/uploads/2015/06/Snackbar-with-CoordinatorLayout1.gif" alt=""></p>
+<h3 id="配置Snackbar可选操作">配置Snackbar可选操作</h3><p>我们可以使用额外的可选操作来配置snackbar，比如<em><font color="red">setActionTextColor</font></em> 和 <em><font color="red">setDuration</font></em>:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">Snackbar.make(rootlayout, <span class="string">"Hello SnackBar!"</span>, Snackbar.LENGTH_SHORT)</span><br><span class="line">       .setAction(<span class="string">"Undo"</span>, <span class="keyword">new</span> View.OnClickListener() &#123;</span><br><span class="line">           <span class="annotation">@Override</span></span><br><span class="line">           <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onClick</span><span class="params">(View v)</span> </span>&#123;</span><br><span class="line">               <span class="comment">// Perform anything for the action selected</span></span><br><span class="line">           &#125;</span><br><span class="line">       &#125;)</span><br><span class="line">       .setActionTextColor(R.color.material_blue)</span><br><span class="line">       .setDuration(<span class="number">4000</span>).show();</span><br></pre></td></tr></table></figure>
+<p>下载示例代码：<a href="https://github.com/PareshMayani/DesignSupportLibraryExamples" target="_blank" rel="external">https://github.com/PareshMayani/DesignSupportLibraryExamples</a></p>
+<p>参考文档：<br><a href="https://developer.android.com/reference/android/support/design/widget/Snackbar.html" target="_blank" rel="external">https://developer.android.com/reference/android/support/design/widget/Snackbar.html</a></p>
+<h3 id="总结">总结</h3><p>在这部分文章中，我们讨论了Snackbar，它和TOAST很相似，但是它更灵活一些。Snackbar中可以定义action，当用户与屏幕交互时或者显示一段时间后会自动消失。</p>
+<p>通过 CoordinatorLayout我们可以看到更多的effects 和 behaviours，在该系列文章中后续会讨论它。</p>
+
+      
+    </div>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-2015new" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/07/10/2015new/" class="article-date">
+  <time datetime="2015-07-10T06:26:21.000Z" itemprop="datePublished">2015-07-10</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/07/10/2015new/">2015new</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
         
       
     </div>
@@ -170,7 +306,7 @@ var _hmt = _hmt || [];
   <div class="widget-wrap">
     <h3 class="widget-title">Categories</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/测试/">测试</a><span class="category-list-count">1</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/翻译/">翻译</a><span class="category-list-count">2</span></li></ul>
     </div>
   </div>
 
@@ -179,7 +315,7 @@ var _hmt = _hmt || [];
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hello/">Hello</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/World/">World</a><span class="tag-list-count">1</span></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/RecyclerView/">RecyclerView</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Snackbar/">Snackbar</a><span class="tag-list-count">1</span></li></ul>
     </div>
   </div>
 
@@ -188,7 +324,7 @@ var _hmt = _hmt || [];
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/Hello/" style="font-size: NaNpx;">Hello</a><a href="/tags/World/" style="font-size: NaNpx;">World</a>
+      <a href="/tags/RecyclerView/" style="font-size: NaNpx;">RecyclerView</a><a href="/tags/Snackbar/" style="font-size: NaNpx;">Snackbar</a>
     </div>
   </div>
 
@@ -197,7 +333,7 @@ var _hmt = _hmt || [];
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/07/">July 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">March 2015</a><span class="archive-list-count">1</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/07/">July 2015</a><span class="archive-list-count">3</span></li></ul>
     </div>
   </div>
 
@@ -209,11 +345,15 @@ var _hmt = _hmt || [];
       <ul>
         
           <li>
-            <a href="/2015/07/10/new-hEOO/">new hEOO</a>
+            <a href="/2015/07/10/拖拽RecyclerView/">拖拽RecyclerView</a>
           </li>
         
           <li>
-            <a href="/2015/03/21/HelloWorld/">HelloWorld</a>
+            <a href="/2015/07/10/还在用Toast？你Out啦，试试Snackbar吧！/">还在用Toast？你Out啦，试试Snackbar吧！</a>
+          </li>
+        
+          <li>
+            <a href="/2015/07/10/2015new/">2015new</a>
           </li>
         
       </ul>

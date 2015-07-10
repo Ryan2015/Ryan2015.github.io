@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>还在用Toast？你Out啦，试试Snackbar吧！ | ObjectLife&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="原文链接 : Welcome Snackbar, Goodbye Toast!
+原文作者 : Paresh Mayani
+译文出自 :  开发技术前线 www.devtf.cn
+译者 : objectlife 
+校对者: Mr.Simple 
+状态 : 完成
+
+
+欢迎来到Android design support library系列教程第二部分，第一部分我们讨论了Floating action">
+<meta property="og:type" content="article">
+<meta property="og:title" content="还在用Toast？你Out啦，试试Snackbar吧！">
+<meta property="og:url" content="http://www.objectlife.com/2015/07/10/还在用Toast？你Out啦，试试Snackbar吧！/index.html">
+<meta property="og:site_name" content="ObjectLife's Blog">
+<meta property="og:description" content="原文链接 : Welcome Snackbar, Goodbye Toast!
+原文作者 : Paresh Mayani
+译文出自 :  开发技术前线 www.devtf.cn
+译者 : objectlife 
+校对者: Mr.Simple 
+状态 : 完成
+
+
+欢迎来到Android design support library系列教程第二部分，第一部分我们讨论了Floating action">
+<meta property="og:image" content="http://www.technotalkative.com/wp-content/uploads/2015/06/Snackbar-framelayout1.gif">
+<meta property="og:image" content="http://www.technotalkative.com/wp-content/uploads/2015/06/Snackbar-with-CoordinatorLayout1.gif">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="还在用Toast？你Out啦，试试Snackbar吧！">
+<meta name="twitter:description" content="原文链接 : Welcome Snackbar, Goodbye Toast!
+原文作者 : Paresh Mayani
+译文出自 :  开发技术前线 www.devtf.cn
+译者 : objectlife 
+校对者: Mr.Simple 
+状态 : 完成
+
+
+欢迎来到Android design support library系列教程第二部分，第一部分我们讨论了Floating action">
+  
+    <link rel="alternative" href="/atom.xml" title="ObjectLife&#39;s Blog" type="application/atom+xml">
+  
+  
+    <!-- <link rel="icon" href="/favicon.png"> -->
+    <!-- <link href="/favicon.ico" rel="icon" type="image/x-ico"> -->
+    <link href="favicon.ico" rel="shortcut icon" type="image/x-icon" />
+    
+  
+  <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+  
+<script type="text/javascript">
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?167b23882695e0deceaff3d135c0289f";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+</script>
+
+
+
+
+
+
+
+
+
+
+</head>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">ObjectLife&#39;s Blog</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">文字、代码</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+          <a class="main-nav-link" href="/about">About</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+      </nav>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-还在用Toast？你Out啦，试试Snackbar吧！" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/07/10/还在用Toast？你Out啦，试试Snackbar吧！/" class="article-date">
+  <time datetime="2015-07-10T06:28:46.000Z" itemprop="datePublished">2015-07-10</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/翻译/">翻译</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      还在用Toast？你Out啦，试试Snackbar吧！
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<ul>
+<li>原文链接 : <a href="http://www.technotalkative.com/part-2-welcome-snackbar-goodbye-toast/" target="_blank" rel="external">Welcome Snackbar, Goodbye Toast!</a></li>
+<li>原文作者 : <a href="http://en.gravatar.com/pareshnmayani" target="_blank" rel="external">Paresh Mayani</a></li>
+<li><a href="http://www.devtf.cn" target="_blank" rel="external">译文出自 :  开发技术前线 www.devtf.cn</a></li>
+<li>译者 : <a href="https://github.com/objectlife" target="_blank" rel="external">objectlife</a> </li>
+<li>校对者: <a href="https://github.com/bboyfeiyu" target="_blank" rel="external">Mr.Simple</a> </li>
+<li>状态 : 完成</li>
+</ul>
+</blockquote>
+<p>欢迎来到Android design support library系列教程第二部分，第一部分我们讨论了<a href="http://www.technotalkative.com/part-1-floating-action-button/" target="_blank" rel="external">Floating action button</a>的一些attributes 和 常见issues。</p>
+<p>今天我们讨论一下另一个组件”Snackbar”.</p>
+<p>Welcome Snackbar, Goodbye Toast!</p>
+<blockquote>
+<p>“Providing lightweight, quick feedback about an operation is a perfect opportunity to use a snackbar.”</p>
+</blockquote>
+<p>Snackbar是design support library中另一个组件，使用Snackbar我们可以在屏幕底部(大多时候)快速弹出消息，它和Toast非常相似，但是它更灵活一些。</p>
+<ul>
+<li>当它显示一段时间后或用户与屏幕交互时它会自动消失。</li>
+<li>可以自定义action-可选操作。</li>
+<li>swiping it off the screen可以让FAB消失</li>
+<li>它是context sensitive message(自己理解吧),所以这些消息是UI screen的一部分并且它是显示在所有屏幕其它元素之上(屏幕最顶层)，并不是像Toast一样覆盖在屏幕上。</li>
+<li>同一时间只能显示一个snackbar。</li>
+</ul>
+<p>Snackbar基本上继承了和Toast一样的方法和属性，例如LENGTH_LONG 和 LENGTH_SHORT用于设置显示时长。</p>
+<h2 id="如何使用">如何使用</h2><p>我们看一下如何使用:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">Snackbar.make(view, message, duration)</span><br><span class="line">       .setAction(action message, click listener)</span><br><span class="line">       .show();</span><br></pre></td></tr></table></figure>
+<h3 id="方法:">方法:</h3><ul>
+<li><em><font color="red">make()</font></em>  – 生成Snackbar消息</li>
+<li><em><font color="red">setAction()</font></em>  – 设置action</li>
+<li><em><font color="red">make()</font></em>  – 显示Snackbar消息</li>
+</ul>
+<h3 id="属性:">属性:</h3><ul>
+<li>make()方法的第一个参数是一个view, snackbar会试着寻找一个父view来hold这个view. Snackbar将遍历整个view tree 来寻找一个合适的父view，它可能是一个coordinatorLayout也可能是window decor’s content view,随便哪一个都行。</li>
+<li>正如上面所提到，duration参数和Toast中的duration参数类似，只能是LENGTH_SHORT 或 LENGTH_LONG，不能是其它任何随机数。</li>
+</ul>
+<h3 id="示例:">示例:</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">Snackbar.make(rootlayout, <span class="string">"Hello SnackBar!"</span>, Snackbar.LENGTH_SHORT)</span><br><span class="line">       .setAction(<span class="string">"Undo"</span>, <span class="keyword">new</span> View.OnClickListener() &#123;</span><br><span class="line">           <span class="annotation">@Override</span></span><br><span class="line">           <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onClick</span><span class="params">(View v)</span> </span>&#123;</span><br><span class="line">               <span class="comment">// Perform anything for the action selected</span></span><br><span class="line">           &#125;</span><br><span class="line">       &#125;)</span><br><span class="line">       .show();</span><br></pre></td></tr></table></figure>
+<p>部局文件中rootlayout是framelayout并且添加了FAB(Floating action button)，看一下FAB示例：</p>
+<p>点击FAB查看结果：</p>
+<p><img src="http://www.technotalkative.com/wp-content/uploads/2015/06/Snackbar-framelayout1.gif" alt=""></p>
+<p>程序没问题，但是对于用户体验来说并不太好，它应该向上移一些，如下图所示：</p>
+<blockquote>
+<p>Having a CoordinatorLayout in your view hierarchy allows Snackbar to enable certain features, such as swipe-to-dismiss and automatically moving of widgets like FloatingActionButton.</p>
+</blockquote>
+<p>我们在该系列文章的下一部分讨论CoordinatorLayout。</p>
+<p><img src="http://www.technotalkative.com/wp-content/uploads/2015/06/Snackbar-with-CoordinatorLayout1.gif" alt=""></p>
+<h3 id="配置Snackbar可选操作">配置Snackbar可选操作</h3><p>我们可以使用额外的可选操作来配置snackbar，比如<em><font color="red">setActionTextColor</font></em> 和 <em><font color="red">setDuration</font></em>:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">Snackbar.make(rootlayout, <span class="string">"Hello SnackBar!"</span>, Snackbar.LENGTH_SHORT)</span><br><span class="line">       .setAction(<span class="string">"Undo"</span>, <span class="keyword">new</span> View.OnClickListener() &#123;</span><br><span class="line">           <span class="annotation">@Override</span></span><br><span class="line">           <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onClick</span><span class="params">(View v)</span> </span>&#123;</span><br><span class="line">               <span class="comment">// Perform anything for the action selected</span></span><br><span class="line">           &#125;</span><br><span class="line">       &#125;)</span><br><span class="line">       .setActionTextColor(R.color.material_blue)</span><br><span class="line">       .setDuration(<span class="number">4000</span>).show();</span><br></pre></td></tr></table></figure>
+<p>下载示例代码：<a href="https://github.com/PareshMayani/DesignSupportLibraryExamples" target="_blank" rel="external">https://github.com/PareshMayani/DesignSupportLibraryExamples</a></p>
+<p>参考文档：<br><a href="https://developer.android.com/reference/android/support/design/widget/Snackbar.html" target="_blank" rel="external">https://developer.android.com/reference/android/support/design/widget/Snackbar.html</a></p>
+<h3 id="总结">总结</h3><p>在这部分文章中，我们讨论了Snackbar，它和TOAST很相似，但是它更灵活一些。Snackbar中可以定义action，当用户与屏幕交互时或者显示一段时间后会自动消失。</p>
+<p>通过 CoordinatorLayout我们可以看到更多的effects 和 behaviours，在该系列文章中后续会讨论它。</p>
+
+      
+    </div>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2015/07/10/拖拽RecyclerView/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          拖拽RecyclerView
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2015/07/10/2015new/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">2015new</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+  <section id="comments">
+    <!-- 多说评论框 start -->
+    <div class="ds-thread" data-thread-key="post-还在用Toast？你Out啦，试试Snackbar吧！" data-title="还在用Toast？你Out啦，试试Snackbar吧！" data-url="http://www.objectlife.com/2015/07/10/还在用Toast？你Out啦，试试Snackbar吧！/"></div>
+    <!-- 多说评论框 end -->
+    <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+    <script type="text/javascript">
+    var duoshuoQuery = {short_name:'objectlife'};
+      (function() {
+        var ds = document.createElement('script');
+        ds.type = 'text/javascript';ds.async = true;
+        ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+        ds.charset = 'UTF-8';
+        (document.getElementsByTagName('head')[0] 
+         || document.getElementsByTagName('body')[0]).appendChild(ds);
+      })();
+      </script>
+    <!-- 多说公共JS代码 end -->
+  </section>
+  </section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/翻译/">翻译</a><span class="category-list-count">2</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/RecyclerView/">RecyclerView</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Snackbar/">Snackbar</a><span class="tag-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/RecyclerView/" style="font-size: NaNpx;">RecyclerView</a><a href="/tags/Snackbar/" style="font-size: NaNpx;">Snackbar</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/07/">July 2015</a><span class="archive-list-count">3</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recents</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2015/07/10/拖拽RecyclerView/">拖拽RecyclerView</a>
+          </li>
+        
+          <li>
+            <a href="/2015/07/10/还在用Toast？你Out啦，试试Snackbar吧！/">还在用Toast？你Out啦，试试Snackbar吧！</a>
+          </li>
+        
+          <li>
+            <a href="/2015/07/10/2015new/">2015new</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2015 objectlife<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/about" class="mobile-nav-link">About</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
+  <script src="/fancybox/jquery.fancybox.pack.js" type="text/javascript"></script>
+
+
+<script src="/js/script.js" type="text/javascript"></script>
+
+  </div>
+</body>
+</html>
