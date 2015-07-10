@@ -4,7 +4,7 @@
   <subtitle><![CDATA[文字、代码]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://www.objectlife.com/"/>
-  <updated>2015-07-10T07:22:24.000Z</updated>
+  <updated>2015-07-10T07:25:15.000Z</updated>
   <id>http://www.objectlife.com/</id>
   
   <author>
@@ -18,8 +18,8 @@
     <title><![CDATA[拖拽RecyclerView]]></title>
     <link href="http://www.objectlife.com/2015/07/10/%E6%8B%96%E6%8B%BDRecyclerView/"/>
     <id>http://www.objectlife.com/2015/07/10/拖拽RecyclerView/</id>
-    <published>2015-07-10T07:22:24.000Z</published>
-    <updated>2015-07-10T07:22:24.000Z</updated>
+    <published>2015-07-10T07:25:15.000Z</published>
+    <updated>2015-07-10T07:25:15.000Z</updated>
     <content type="html"><![CDATA[<ul>
 <li><p>原文链接 : <a href="https://medium.com/@ipaulpro/drag-and-swipe-with-recyclerview-b9456d2b1aaf" target="_blank" rel="external">Drag and Swipe with RecyclerView</a></p>
 </li>
@@ -97,8 +97,8 @@
     <title><![CDATA[还在用Toast？你Out啦，试试Snackbar吧！]]></title>
     <link href="http://www.objectlife.com/2015/07/10/%E8%BF%98%E5%9C%A8%E7%94%A8Toast%EF%BC%9F%E4%BD%A0Out%E5%95%A6%EF%BC%8C%E8%AF%95%E8%AF%95Snackbar%E5%90%A7%EF%BC%81/"/>
     <id>http://www.objectlife.com/2015/07/10/还在用Toast？你Out啦，试试Snackbar吧！/</id>
-    <published>2015-07-10T07:22:06.000Z</published>
-    <updated>2015-07-10T07:22:06.000Z</updated>
+    <published>2015-07-10T07:24:58.000Z</published>
+    <updated>2015-07-10T07:24:58.000Z</updated>
     <content type="html"><![CDATA[<ul>
 <li><p>原文链接 : <a href="http://www.technotalkative.com/part-2-welcome-snackbar-goodbye-toast/" target="_blank" rel="external">Welcome Snackbar, Goodbye Toast!</a></p>
 </li>
