@@ -4,7 +4,7 @@
   <subtitle><![CDATA[文字、代码]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://www.objectlife.com/"/>
-  <updated>2015-07-10T06:32:20.000Z</updated>
+  <updated>2015-07-10T06:35:14.000Z</updated>
   <id>http://www.objectlife.com/</id>
   
   <author>
@@ -18,14 +18,16 @@
     <title><![CDATA[拖拽RecyclerView]]></title>
     <link href="http://www.objectlife.com/2015/07/10/%E6%8B%96%E6%8B%BDRecyclerView/"/>
     <id>http://www.objectlife.com/2015/07/10/拖拽RecyclerView/</id>
-    <published>2015-07-10T06:32:20.000Z</published>
-    <updated>2015-07-10T06:32:20.000Z</updated>
-    <content type="html"><![CDATA[<p>原文链接 : <a href="https://medium.com/@ipaulpro/drag-and-swipe-with-recyclerview-b9456d2b1aaf" target="_blank" rel="external">Drag and Swipe with RecyclerView</a></p>
+    <published>2015-07-10T06:35:14.000Z</published>
+    <updated>2015-07-10T06:35:14.000Z</updated>
+    <content type="html"><![CDATA[<blockquote>
+<p>原文链接 : <a href="https://medium.com/@ipaulpro/drag-and-swipe-with-recyclerview-b9456d2b1aaf" target="_blank" rel="external">Drag and Swipe with RecyclerView</a></p>
 <p>原文作者 : <a href="https://medium.com/@ipaulpro" target="_blank" rel="external">Paul Burke</a></p>
 <p><a href="http://www.devtf.cn" target="_blank" rel="external">译文出自 :  开发技术前线 www.devtf.cn</a></p>
 <p>译者 : <a href="https://github.com/objectlife" target="_blank" rel="external">objectlife</a> </p>
 <p>校对者: <a href="https://github.com/bboyfeiyu" target="_blank" rel="external">Mr.Simple</a> </p>
 <p>状态 : 完成</p>
+</blockquote>
 <video loop video="" autoplay class="graf-image" data-image-id="1*4Cqfs-75ibhvC_3BMEIvVA.gif" data-width="1440" data-height="600"><source src="https://d262ilb51hltx0.cloudfront.net/max/2000/1*4Cqfs-75ibhvC_3BMEIvVA.mp4" type="video/mp4"></video>
 
 
@@ -76,7 +78,8 @@
 <p>© 2015 Paul Burke</p>
 ]]></content>
     <summary type="html">
-    <![CDATA[<p>原文链接 : <a href="https://medium.com/@ipaulpro/drag-and-swipe-with-recyclerview-b9456d2b1aaf" target="_blank" rel="external">Drag and Swipe]]>
+    <![CDATA[<blockquote>
+<p>原文链接 : <a href="https://medium.com/@ipaulpro/drag-and-swipe-with-recyclerview-b9456d2b1aaf" target="_blank" rel="external">D]]>
     </summary>
     
       <category term="RecyclerView" scheme="http://www.objectlife.com/tags/RecyclerView/"/>
