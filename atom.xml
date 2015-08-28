@@ -4,7 +4,7 @@
   <subtitle><![CDATA[文字、代码]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://www.objectlife.com/"/>
-  <updated>2015-07-10T07:26:43.000Z</updated>
+  <updated>2015-08-28T01:37:09.000Z</updated>
   <id>http://www.objectlife.com/</id>
   
   <author>
@@ -13,6 +13,44 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title><![CDATA[Fragment生命周期]]></title>
+    <link href="http://www.objectlife.com/2015/08/27/Fragment%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/"/>
+    <id>http://www.objectlife.com/2015/08/27/Fragment生命周期/</id>
+    <published>2015-08-27T10:01:54.000Z</published>
+    <updated>2015-08-28T01:37:09.000Z</updated>
+    <content type="html"><![CDATA[<p>当Fragment用于内容显示时，在使用不同切换方式时生命周期函数调用情况：</p>
+<p>场景：MainActivity-底部有两个TAB分别用于显示FragmetnA和FragmentB,页面顶部有一button用于打开SecondActivity.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">使用Relace()函数切换</th>
+<th style="text-align:center">使用add(),show(),hide()配合切换</th>
+<th style="text-align:center">使用FragmentTabHost</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center"><img src="http://7u2rld.com1.z0.glb.clouddn.com/replace01.png?attname=&amp;e=1440762226&amp;token=ZPe-lpH0A_bVbZS0LlcFyaP9YaqzpKhE-QgP-jRV:C5dGFDDCefaqLZ_fIIFprp90jSs" alt=""></td>
+<td style="text-align:center"><img src="http://7u2rld.com1.z0.glb.clouddn.com/addhideshow02.png?attname=&amp;e=1440811376&amp;token=ZPe-lpH0A_bVbZS0LlcFyaP9YaqzpKhE-QgP-jRV:njGZDpURRVk1QgYaIPnZT7v98ec" alt=""></td>
+<td style="text-align:center"><img src="http://7u2rld.com1.z0.glb.clouddn.com/fragmenttabhost03.png?attname=&amp;e=1440811376&amp;token=ZPe-lpH0A_bVbZS0LlcFyaP9YaqzpKhE-QgP-jRV:_b__bxmMUzkU4MR0UVwOj6EkkYc" alt=""></td>
+</tr>
+</tbody>
+</table>
+<p>以上就是不同情况下调用生命周期函数的情况。</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>当Fragment用于内容显示时，在使用不同切换方式时生命周期函数调用情况：</p>
+<p>场景：MainActivity-底部有两个TAB分别用于显示FragmetnA和FragmentB,页面顶部有一button用于打开SecondActivity.</p>
+<tabl]]>
+    </summary>
+    
+      <category term="Fragment" scheme="http://www.objectlife.com/tags/Fragment/"/>
+    
+      <category term="生命周期" scheme="http://www.objectlife.com/tags/%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/"/>
+    
+  </entry>
   
   <entry>
     <title><![CDATA[拖拽RecyclerView]]></title>

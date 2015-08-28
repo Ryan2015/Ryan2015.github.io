@@ -3,17 +3,74 @@
 <head>
   <meta charset="utf-8">
   
-  <title>ObjectLife&#39;s Blog</title>
+  <title>Fragment生命周期 | ObjectLife&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="objectlife ObjectLife&apos;s Blog 关注移动开发 Android IOS">
-<meta property="og:type" content="website">
-<meta property="og:title" content="ObjectLife's Blog">
-<meta property="og:url" content="http://www.objectlife.com/archives/index.html">
+  <meta name="description" content="当Fragment用于内容显示时，在使用不同切换方式时生命周期函数调用情况：
+场景：MainActivity-底部有两个TAB分别用于显示FragmetnA和FragmentB,页面顶部有一button用于打开SecondActivity.
+
+
+
+使用Relace()函数切换
+使用add(),show(),hide()配合切换
+使用FragmentTabHost
+
+
+
+
+
+
+
+
+
+
+以上就是不同情">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Fragment生命周期">
+<meta property="og:url" content="http://www.objectlife.com/2015/08/27/Fragment生命周期/index.html">
 <meta property="og:site_name" content="ObjectLife's Blog">
-<meta property="og:description" content="objectlife ObjectLife&apos;s Blog 关注移动开发 Android IOS">
+<meta property="og:description" content="当Fragment用于内容显示时，在使用不同切换方式时生命周期函数调用情况：
+场景：MainActivity-底部有两个TAB分别用于显示FragmetnA和FragmentB,页面顶部有一button用于打开SecondActivity.
+
+
+
+使用Relace()函数切换
+使用add(),show(),hide()配合切换
+使用FragmentTabHost
+
+
+
+
+
+
+
+
+
+
+以上就是不同情">
+<meta property="og:image" content="http://7u2rld.com1.z0.glb.clouddn.com/replace01.png?attname=&e=1440762226&token=ZPe-lpH0A_bVbZS0LlcFyaP9YaqzpKhE-QgP-jRV:C5dGFDDCefaqLZ_fIIFprp90jSs">
+<meta property="og:image" content="http://7u2rld.com1.z0.glb.clouddn.com/addhideshow02.png?attname=&e=1440811376&token=ZPe-lpH0A_bVbZS0LlcFyaP9YaqzpKhE-QgP-jRV:njGZDpURRVk1QgYaIPnZT7v98ec">
+<meta property="og:image" content="http://7u2rld.com1.z0.glb.clouddn.com/fragmenttabhost03.png?attname=&e=1440811376&token=ZPe-lpH0A_bVbZS0LlcFyaP9YaqzpKhE-QgP-jRV:_b__bxmMUzkU4MR0UVwOj6EkkYc">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="ObjectLife's Blog">
-<meta name="twitter:description" content="objectlife ObjectLife&apos;s Blog 关注移动开发 Android IOS">
+<meta name="twitter:title" content="Fragment生命周期">
+<meta name="twitter:description" content="当Fragment用于内容显示时，在使用不同切换方式时生命周期函数调用情况：
+场景：MainActivity-底部有两个TAB分别用于显示FragmetnA和FragmentB,页面顶部有一button用于打开SecondActivity.
+
+
+
+使用Relace()函数切换
+使用add(),show(),hide()配合切换
+使用FragmentTabHost
+
+
+
+
+
+
+
+
+
+
+以上就是不同情">
   
     <link rel="alternative" href="/atom.xml" title="ObjectLife&#39;s Blog" type="application/atom+xml">
   
@@ -84,78 +141,86 @@ var _hmt = _hmt || [];
   </div>
 </header>
       <div class="outer">
-        <section id="main">
-  
-  
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2015" class="archive-year">2015</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2015/08/27/Fragment生命周期/" class="archive-article-date">
-  <time datetime="2015-08-27T10:01:54.000Z" itemprop="datePublished">8月 27</time>
+        <section id="main"><article id="post-Fragment生命周期" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/08/27/Fragment生命周期/" class="article-date">
+  <time datetime="2015-08-27T10:01:54.000Z" itemprop="datePublished">2015-08-27</time>
 </a>
-      
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2015/08/27/Fragment生命周期/">Fragment生命周期</a>
+    <h1 class="article-title" itemprop="name">
+      Fragment生命周期
     </h1>
   
 
-    </header>
-  </div>
-</article>
-  
+      </header>
     
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2015/07/10/拖拽RecyclerView/" class="archive-article-date">
-  <time datetime="2015-07-10T07:26:43.000Z" itemprop="datePublished">7月 10</time>
-</a>
+    <div class="article-entry" itemprop="articleBody">
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2015/07/10/拖拽RecyclerView/">拖拽RecyclerView</a>
-    </h1>
-  
+        <p>当Fragment用于内容显示时，在使用不同切换方式时生命周期函数调用情况：</p>
+<p>场景：MainActivity-底部有两个TAB分别用于显示FragmetnA和FragmentB,页面顶部有一button用于打开SecondActivity.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">使用Relace()函数切换</th>
+<th style="text-align:center">使用add(),show(),hide()配合切换</th>
+<th style="text-align:center">使用FragmentTabHost</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center"><img src="http://7u2rld.com1.z0.glb.clouddn.com/replace01.png?attname=&amp;e=1440762226&amp;token=ZPe-lpH0A_bVbZS0LlcFyaP9YaqzpKhE-QgP-jRV:C5dGFDDCefaqLZ_fIIFprp90jSs" alt=""></td>
+<td style="text-align:center"><img src="http://7u2rld.com1.z0.glb.clouddn.com/addhideshow02.png?attname=&amp;e=1440811376&amp;token=ZPe-lpH0A_bVbZS0LlcFyaP9YaqzpKhE-QgP-jRV:njGZDpURRVk1QgYaIPnZT7v98ec" alt=""></td>
+<td style="text-align:center"><img src="http://7u2rld.com1.z0.glb.clouddn.com/fragmenttabhost03.png?attname=&amp;e=1440811376&amp;token=ZPe-lpH0A_bVbZS0LlcFyaP9YaqzpKhE-QgP-jRV:_b__bxmMUzkU4MR0UVwOj6EkkYc" alt=""></td>
+</tr>
+</tbody>
+</table>
+<p>以上就是不同情况下调用生命周期函数的情况。</p>
 
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2015/07/10/还在用Toast？你Out啦，试试Snackbar吧！/" class="archive-article-date">
-  <time datetime="2015-07-10T07:26:37.000Z" itemprop="datePublished">7月 10</time>
-</a>
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2015/07/10/还在用Toast？你Out啦，试试Snackbar吧！/">还在用Toast？你Out啦，试试Snackbar吧！</a>
-    </h1>
-  
-
-    </header>
+    </div>
   </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2015/07/10/拖拽RecyclerView/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">拖拽RecyclerView</div>
+    </a>
+  
+</nav>
+
+  
 </article>
-  
-  
-    </div></section>
-  
-</section>
+
+
+  <section id="comments">
+    <!-- 多说评论框 start -->
+    <div class="ds-thread" data-thread-key="post-Fragment生命周期" data-title="Fragment生命周期" data-url="http://www.objectlife.com/2015/08/27/Fragment生命周期/"></div>
+    <!-- 多说评论框 end -->
+    <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+    <script type="text/javascript">
+    var duoshuoQuery = {short_name:'objectlife'};
+      (function() {
+        var ds = document.createElement('script');
+        ds.type = 'text/javascript';ds.async = true;
+        ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+        ds.charset = 'UTF-8';
+        (document.getElementsByTagName('head')[0] 
+         || document.getElementsByTagName('body')[0]).appendChild(ds);
+      })();
+      </script>
+    <!-- 多说公共JS代码 end -->
+  </section>
+  </section>
         
           <aside id="sidebar">
   

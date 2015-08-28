@@ -86,6 +86,56 @@ var _hmt = _hmt || [];
       <div class="outer">
         <section id="main">
   
+    <article id="post-Fragment生命周期" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/08/27/Fragment生命周期/" class="article-date">
+  <time datetime="2015-08-27T10:01:54.000Z" itemprop="datePublished">2015-08-27</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/08/27/Fragment生命周期/">Fragment生命周期</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>当Fragment用于内容显示时，在使用不同切换方式时生命周期函数调用情况：</p>
+<p>场景：MainActivity-底部有两个TAB分别用于显示FragmetnA和FragmentB,页面顶部有一button用于打开SecondActivity.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">使用Relace()函数切换</th>
+<th style="text-align:center">使用add(),show(),hide()配合切换</th>
+<th style="text-align:center">使用FragmentTabHost</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center"><img src="http://7u2rld.com1.z0.glb.clouddn.com/replace01.png?attname=&amp;e=1440762226&amp;token=ZPe-lpH0A_bVbZS0LlcFyaP9YaqzpKhE-QgP-jRV:C5dGFDDCefaqLZ_fIIFprp90jSs" alt=""></td>
+<td style="text-align:center"><img src="http://7u2rld.com1.z0.glb.clouddn.com/addhideshow02.png?attname=&amp;e=1440811376&amp;token=ZPe-lpH0A_bVbZS0LlcFyaP9YaqzpKhE-QgP-jRV:njGZDpURRVk1QgYaIPnZT7v98ec" alt=""></td>
+<td style="text-align:center"><img src="http://7u2rld.com1.z0.glb.clouddn.com/fragmenttabhost03.png?attname=&amp;e=1440811376&amp;token=ZPe-lpH0A_bVbZS0LlcFyaP9YaqzpKhE-QgP-jRV:_b__bxmMUzkU4MR0UVwOj6EkkYc" alt=""></td>
+</tr>
+</tbody>
+</table>
+<p>以上就是不同情况下调用生命周期函数的情况。</p>
+
+      
+    </div>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-拖拽RecyclerView" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2015/07/10/拖拽RecyclerView/" class="article-date">
@@ -226,7 +276,7 @@ var _hmt = _hmt || [];
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/RecyclerView/">RecyclerView</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Snackbar/">Snackbar</a><span class="tag-list-count">1</span></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Fragment/">Fragment</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/RecyclerView/">RecyclerView</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Snackbar/">Snackbar</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/生命周期/">生命周期</a><span class="tag-list-count">1</span></li></ul>
     </div>
   </div>
 
@@ -235,7 +285,7 @@ var _hmt = _hmt || [];
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/RecyclerView/" style="font-size: NaNpx;">RecyclerView</a><a href="/tags/Snackbar/" style="font-size: NaNpx;">Snackbar</a>
+      <a href="/tags/Fragment/" style="font-size: NaNpx;">Fragment</a><a href="/tags/RecyclerView/" style="font-size: NaNpx;">RecyclerView</a><a href="/tags/Snackbar/" style="font-size: NaNpx;">Snackbar</a><a href="/tags/生命周期/" style="font-size: NaNpx;">生命周期</a>
     </div>
   </div>
 
@@ -244,7 +294,7 @@ var _hmt = _hmt || [];
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/07/">七月 2015</a><span class="archive-list-count">2</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/08/">八月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/07/">七月 2015</a><span class="archive-list-count">2</span></li></ul>
     </div>
   </div>
 
@@ -254,6 +304,10 @@ var _hmt = _hmt || [];
     <h3 class="widget-title">Recents</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2015/08/27/Fragment生命周期/">Fragment生命周期</a>
+          </li>
         
           <li>
             <a href="/2015/07/10/拖拽RecyclerView/">拖拽RecyclerView</a>
